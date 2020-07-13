@@ -1,8 +1,10 @@
 import UserClient from "./UserClient";
 import BaseClient from "./BaseClient";
+import {getUserToken} from "../component/UserUtils";
 
 interface PostSentInterface {
     title: string,
+    sub_title: string,
     body: string,
     active: boolean
 }
@@ -17,7 +19,14 @@ interface PostReceivedInterface {
 export default class PostClient extends BaseClient {
 
     static async getAll(): Promise<Array<PostReceivedInterface>> {
-        let response = await super.get("http://localhost:8000/posts")
+        let response = await fetch("http://localhost:8000/api/posts", {
+            method: 'GET',
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
 
         let posts:Array<PostReceivedInterface> = await super.getJsonFromResponse(response);
 
@@ -31,13 +40,13 @@ export default class PostClient extends BaseClient {
     }
 
     static async deletePost(postId: number) {
-        let response = await super.delete(`http://localhost:8000/posts/${postId}`)
+        let response = await super.delete(`http://localhost:8000/admin/posts/${postId}`)
 
         return response.ok
     }
 
     static async create(post: PostSentInterface): Promise<boolean> {
-        let response = await super.post("http://localhost:8000/posts", JSON.stringify(post))
+        let response = await super.post("http://localhost:8000/admin/posts", JSON.stringify(post))
 
         return response.ok
     }

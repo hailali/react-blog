@@ -15,14 +15,11 @@ export class PostList extends React.Component<any, any>{
             <article className="post-preview">
                 <a href="/startbootstrap-clean-blog-jekyll/2020/01/31/man-must-explore.html">
                     <h2 className="post-title">{post.title}</h2>
-                    <h3 className="post-subtitle">Problems look mighty small from 150 miles up</h3>
+                    <h3 className="post-subtitle">{post.sub_title}</h3>
                 </a>
-                <p className="post-meta">Posted by
-                    Start Bootstrap
-                    on
-                    January 31, 2020 · <span className="reading-time" title="Estimated read time">
-   4 mins  read </span>
-                </p>
+                <p className="post-meta">Posted by {post.user}
+                    on {post.created_at} · <span className="reading-time" title="Estimated read time">4 mins  read </span>
+                </  p>
             </article>
         )
     }

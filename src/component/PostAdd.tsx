@@ -24,6 +24,7 @@ export class PostAdd extends React.Component<any, StateInterface> {
 
         PostClient.create({
             'title': this.ref_form.current['title'].value,
+            'sub_title': this.ref_form.current['sub_title'].value,
             'body': this.ref_form.current['body'].value,
             'active': true
         }).then((isPostCreated: boolean) => {
@@ -48,6 +49,7 @@ export class PostAdd extends React.Component<any, StateInterface> {
                     <div className="container">
                         <form ref={this.ref_form} onSubmit={(e) => this.handleSubmit(e)}>
                             <TextField name="title" label="Title"/>
+                            <TextField name="sub_title" label="Sub title"/>
                             <TextareaField name="body" label="Body"/>
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
