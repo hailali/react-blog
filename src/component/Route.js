@@ -9,6 +9,7 @@ import UserAdd from "./UserAdd.tsx";
 import NavBar from "./Bootstrap";
 import {PostAdd} from "./PostAdd.tsx";
 import {isUserAuthenticated} from "./UserUtils.ts";
+import {PostView} from "./front/PostView";
 
 function PrivateRoute({ children, ...rest }) {
     return (
@@ -44,12 +45,14 @@ export default function AppRouter() {
                     <Route exact path="/users/add">
                         <UserAdd />
                     </Route>
+                    <PrivateRoute exact path="/posts/add">
+                        <PostAdd />
+                    </PrivateRoute>
+                    <Route exact path="/posts/:postId" component={PostView} />
                     <PrivateRoute path="/users">
                         <UserList />
                     </PrivateRoute>
-                    <PrivateRoute path="/posts/add">
-                        <PostAdd />
-                    </PrivateRoute>
+
                     <PrivateRoute path="/posts">
                         <PostList />
                     </PrivateRoute>

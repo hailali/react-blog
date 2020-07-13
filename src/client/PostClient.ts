@@ -1,6 +1,5 @@
 import UserClient from "./UserClient";
 import BaseClient from "./BaseClient";
-import {getUserToken} from "../component/UserUtils";
 
 interface PostSentInterface {
     title: string,
@@ -12,6 +11,7 @@ interface PostSentInterface {
 interface PostReceivedInterface {
     user: string,
     title: string,
+    sub_title: string,
     body: string,
     active: boolean
 }
@@ -49,5 +49,22 @@ export default class PostClient extends BaseClient {
         let response = await super.post("http://localhost:8000/admin/posts", JSON.stringify(post))
 
         return response.ok
+    }
+
+    static async getPost(postId: number): Promise<PostReceivedInterface> {
+        let response = await fetch(`http://localhost:8000/api/posts/${postId}`, {
+            method: 'GET',
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        let post:PostReceivedInterface = await super.getJsonFromResponse(response);
+
+        let user = await UserClient.getByUrl(post.user);
+        // return all posts with user information
+        return {...post, 'user': `${user.first_name} ${user.last_name}`}
     }
 }

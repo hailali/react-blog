@@ -16,7 +16,15 @@ export default class UserClient extends BaseClient {
     }
 
     static async getByUrl(url: string) {
-        let response = await super.get(url)
+        let response = await fetch(url, {
+            method: 'GET',
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
         return await super.getJsonFromResponse(response)
     }
 
