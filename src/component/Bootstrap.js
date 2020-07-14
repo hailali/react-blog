@@ -68,7 +68,6 @@ export function TextareaField({name, label}) {
 }
 
 let NavBar = function ({isUserAuthenticated, onLogout}) {
-    console.log("NAV BAR COMPONENT DISPLAYED", isUserAuthenticated, onLogout)
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -120,15 +119,14 @@ let NavBar = function ({isUserAuthenticated, onLogout}) {
                 <div className="navbar-nav d-none d-lg-flex ml-2 order-3">
                     {isUserAuthenticated ?
                         <div className="nav-item dropdown">
-                            <a className="dropdown-toggle navbar-icon-link" id="userdetails" data-toggle="dropdown"
+                            <span className="dropdown-toggle navbar-icon-link" id="userdetails" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="true">
                                 <PersonCircleIcon/>
-                            </a>
+                            </span>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userdetails">
                                 <a className="dropdown-item" href="#" onClick={() => {
                                     userLogOut();
                                     onLogout();
-                                    console.log("On click link")
                                 }}>Logout </a>
                             </div>
                         </div>

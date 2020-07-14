@@ -1,5 +1,4 @@
 import BaseClient from "./BaseClient";
-import {getUserToken} from "../component/UserUtils";
 
 interface UserSentInterface {
     username: string,
@@ -47,7 +46,7 @@ export default class UserClient extends BaseClient {
             let response = await super.delete(`http://localhost:8000/admin/users/${userId}`)
 
             return response.ok
-        } catch (e){
+        } catch (e) {
             console.error(e)
 
             return false

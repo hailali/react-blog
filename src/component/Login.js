@@ -50,8 +50,6 @@ class Login extends React.Component {
     }
 
     render() {
-        console.log("LOGIN COMPONENT DISPLAYED", "isUserAuthenticated __> ", this.props.isUserAuthenticated)
-
         const {username, password, authenticated, authenticationError} = this.state
 
         return (

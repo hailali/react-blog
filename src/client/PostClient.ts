@@ -8,12 +8,13 @@ interface PostSentInterface {
     active: boolean
 }
 
-interface PostReceivedInterface {
+export interface PostReceivedInterface {
     user: string,
     title: string,
     sub_title: string,
     body: string,
-    active: boolean
+    active: boolean,
+    created_at: string
 }
 
 export default class PostClient extends BaseClient {

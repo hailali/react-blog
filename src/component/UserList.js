@@ -71,7 +71,7 @@ export default class UserList extends React.Component {
                                 <td>{user.email}</td>
                                 <td>{user.username}</td>
                                 <td>
-                                    <a href="#" onClick={(e) => this.handleDeleteUser(e, user.id)}><TrashIcon /></a>
+                                    <span onClick={(e) => this.handleDeleteUser(e, user.id)}><TrashIcon /></span>
                                 </td>
                             </tr>
                         )

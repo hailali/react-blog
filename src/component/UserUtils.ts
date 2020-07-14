@@ -1,7 +1,7 @@
 export function isUserAuthenticated() {
     return sessionStorage.getItem('exp') !== null &&
     sessionStorage.getItem('token') !== null &&
-    parseInt(<string>sessionStorage.getItem('exp')) > Math.floor(Date.now() / 1000)
+    parseInt(sessionStorage.getItem('exp')) > Math.floor(Date.now() / 1000)
 }
 
 /**

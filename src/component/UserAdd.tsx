@@ -1,5 +1,5 @@
-import React, {RefObject} from "react";
-import {Card, TextField, PasswordField} from "./Bootstrap"
+import React from "react";
+import {Card, PasswordField, TextField} from "./Bootstrap"
 import UserClient from "../client/UserClient";
 
 interface StateInterface {
@@ -46,7 +46,9 @@ export default class UserAdd extends React.Component<any, StateInterface> {
                         User created successfully !
                     </div> : ''}
                     <div className="container">
-                        <form ref={(ref) => {this.ref_form = ref}} onSubmit={(e) => this.handleSubmit(e)}>
+                        <form ref={(ref) => {
+                            this.ref_form = ref
+                        }} onSubmit={(e) => this.handleSubmit(e)}>
                             <TextField name="username" label="Username"/>
                             <PasswordField name="password" label="Password"/>
                             <TextField name="last_name" label="Last name"/>

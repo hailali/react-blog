@@ -1,10 +1,12 @@
 import React from "react";
-import PostClient from "../../client/PostClient";
-import {useParams} from "react-router-dom";
+import PostClient, {PostReceivedInterface} from "../../client/PostClient";
 
-export class PostView extends React.Component<any, any> {
-    private postId: number;
+interface StatusInterface {
+    post: PostReceivedInterface
+    loaded: boolean
+}
 
+export class PostView extends React.Component<any, StatusInterface> {
     constructor(props) {
         super(props);
 
@@ -30,7 +32,7 @@ export class PostView extends React.Component<any, any> {
 
         return (
             <div className="container">
-                { loaded ? <div className="row">
+                {loaded ? <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="post-heading">
                             <h1>{post.title}</h1>
@@ -40,7 +42,16 @@ export class PostView extends React.Component<any, any> {
                                 {post.created_at} </span>
                         </div>
                     </div>
-                </div> : <div>Loading....</div> }
+                    <article>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-8 col-md-10 mx-auto">
+                                    {post.body}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div> : <div>Loading....</div>}
 
             </div>
         )
