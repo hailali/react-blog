@@ -9,6 +9,7 @@ interface PostSentInterface {
 }
 
 export interface PostReceivedInterface {
+    id: number,
     user: string,
     title: string,
     sub_title: string,

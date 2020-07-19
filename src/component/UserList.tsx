@@ -1,9 +1,15 @@
 import React from 'react';
-import UserClient from "../client/UserClient.ts";
+import UserClient, {UserReceivedInterface} from "../client/UserClient";
 import {TrashIcon} from "./Bootstrap";
 
-export default class UserList extends React.Component {
-    constructor(props) {
+interface UserListStateInterface {
+    users: Array<UserReceivedInterface>,
+    loaded: boolean,
+    deleteUserError: string | null
+}
+
+export default class UserList extends React.Component<any, UserListStateInterface> {
+    constructor(props: any) {
         super(props);
 
         this.state = {
@@ -13,7 +19,7 @@ export default class UserList extends React.Component {
         }
     }
 
-    handleDeleteUser(e, userId) {
+    handleDeleteUser(e: React.MouseEvent<HTMLSpanElement, MouseEvent>, userId:number) {
         e.preventDefault();
 
         UserClient.deleteUser(userId).then((isUserDeleted) => {
@@ -34,7 +40,7 @@ export default class UserList extends React.Component {
     }
 
     componentDidMount() {
-        UserClient.getAll().then(users => {
+        UserClient.getAll().then((users) => {
             this.setState({
                 users: users
             })

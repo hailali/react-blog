@@ -1,9 +1,14 @@
 import React from 'react';
-import PostClient from "../client/PostClient.ts";
+import PostClient, {PostReceivedInterface} from "../client/PostClient";
 import {TrashIcon} from "./Bootstrap";
 
-export default class PostList extends React.Component {
-    constructor(props) {
+interface PostListStateInterface {
+    posts: Array<PostReceivedInterface>,
+    loaded: boolean,
+    deleteError: string | null
+}
+export default class PostList extends React.Component<any, PostListStateInterface> {
+    constructor(props: any) {
         super(props);
 
         this.state = {
@@ -14,14 +19,14 @@ export default class PostList extends React.Component {
     }
 
     componentDidMount() {
-        PostClient.getAll().then(posts => {
+        PostClient.getAll().then((posts) => {
             this.setState({
                 posts: posts
             });
         });
     }
 
-    handleDelete(e, postId) {
+    handleDelete(e: React.MouseEvent<HTMLAnchorElement>, postId: number) {
         e.preventDefault()
 
         PostClient.deletePost(postId).then((isPostDeleted) => {

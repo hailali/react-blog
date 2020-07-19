@@ -2,17 +2,15 @@ import React from "react";
 import PostClient, {PostReceivedInterface} from "../../client/PostClient";
 
 interface StatusInterface {
-    post: PostReceivedInterface
-    loaded: boolean
+    post: null | PostReceivedInterface
 }
 
 export class PostView extends React.Component<any, StatusInterface> {
-    constructor(props) {
+    constructor(props: any) {
         super(props);
 
         this.state = {
-            post: null,
-            loaded: false
+            post: null
         }
     }
 
@@ -21,18 +19,17 @@ export class PostView extends React.Component<any, StatusInterface> {
 
         PostClient.getPost(postId).then((post) => {
             this.setState({
-                post: post,
-                loaded: true
+                post: post
             })
         })
     }
 
     render() {
-        let {post, loaded} = this.state
+        let {post} = this.state
 
         return (
             <div className="container">
-                {loaded ? <div className="row">
+                {post ? <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="post-heading">
                             <h1>{post.title}</h1>

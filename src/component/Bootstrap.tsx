@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {USER_LOGOUT_ACTION} from "../redux/actions";
 import {userLogOut} from "./UserUtils";
 
-export function Card({title, children}) {
+export function Card({title, children}: {title: string, children: any}) {
     return (
         <div className="card">
             <div className="card-header">
@@ -39,7 +39,7 @@ export function PersonCircleIcon() {
     )
 }
 
-export function Field({type, name, label}) {
+export function Field({type, name, label}: {type: string, name: string, label: string}) {
     return (
         <div className="form-group row">
             <label htmlFor={name} className="col-sm-4 col-form-label">{label}</label>
@@ -50,24 +50,24 @@ export function Field({type, name, label}) {
     )
 }
 
-export function TextField({name, label}) {
+export function TextField({name, label}: {name: string, label: string}) {
     return <Field type="text" name={name} label={label}/>
 }
 
-export function PasswordField({name, label}) {
+export function PasswordField({name, label}: {name: string, label: string}) {
     return <Field type="password" name={name} label={label}/>
 }
 
-export function TextareaField({name, label}) {
+export function TextareaField({name, label}: {name: string, label: string}) {
     return (
         <div className="form-group">
             <label htmlFor={name}>{label}</label>
-            <textarea className="form-control" id={name} rows="3"/>
+            <textarea className="form-control" id={name} rows={3}/>
         </div>
     )
 }
 
-let NavBar = function ({isUserAuthenticated, onLogout}) {
+let NavBar = function ({isUserAuthenticated, onLogout}: {isUserAuthenticated: boolean, onLogout: () => any}) {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -137,13 +137,13 @@ let NavBar = function ({isUserAuthenticated, onLogout}) {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
     return {
         isUserAuthenticated: state.isUserAuthenticated
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         onLogout: () => dispatch(USER_LOGOUT_ACTION),
     }

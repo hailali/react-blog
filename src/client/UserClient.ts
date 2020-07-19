@@ -8,8 +8,17 @@ interface UserSentInterface {
     email: string,
 }
 
+export interface UserReceivedInterface {
+    id: number,
+    username: string,
+    password: string,
+    last_name: string,
+    first_name: string,
+    email: string,
+}
+
 export default class UserClient extends BaseClient {
-    static async getAll() {
+    static async getAll(): Promise<Array<UserReceivedInterface>>{
         let response = await super.get("http://localhost:8000/admin/users")
         return await super.getJsonFromResponse(response)
     }

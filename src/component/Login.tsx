@@ -6,12 +6,19 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Redirect} from "react-router-dom";
 import {Card} from "./Bootstrap";
-import LoginClient from "../client/LoginClient.ts";
+import LoginClient from "../client/LoginClient";
 import {USER_LOGIN_ACTION} from "../redux/actions";
 import {connect} from "react-redux";
 
-class Login extends React.Component {
-    constructor(props) {
+interface LoginStateInterface {
+    username: string,
+    password: string,
+    authenticated: boolean,
+    authenticationError: boolean
+}
+
+class Login extends React.Component<any, LoginStateInterface> {
+    constructor(props: any) {
         super(props);
 
         this.state = {
@@ -22,15 +29,15 @@ class Login extends React.Component {
         }
     }
 
-    handleChangeUsername(e) {
+    handleChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
         this.setState({username: e.target.value})
     }
 
-    handleChangePassword(e) {
+    handleChangePassword(e: React.ChangeEvent<HTMLInputElement>) {
         this.setState({password: e.target.value})
     }
 
-    handleSubmit(e) {
+    handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         LoginClient.login(JSON.stringify(this.state)).then(isAuthenticated => {
@@ -83,13 +90,13 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
     return {
         isUserAuthenticated: state.isUserAuthenticated
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         onLogin: () => dispatch(USER_LOGIN_ACTION),
     }

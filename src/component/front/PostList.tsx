@@ -1,9 +1,9 @@
 import React from "react";
-import PostClient from "../../client/PostClient";
+import PostClient, {PostReceivedInterface} from "../../client/PostClient";
 import {Link} from "react-router-dom"
 
 export class PostList extends React.Component<any, any>{
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         this.state = {
             posts: [],
@@ -11,7 +11,7 @@ export class PostList extends React.Component<any, any>{
         }
     }
 
-    renderPost(post) {
+    renderPost(post: PostReceivedInterface) {
         return (
             <article className="post-preview" key={post.id}>
                 <Link to={`/posts/${post.id}`}>
@@ -38,7 +38,7 @@ export class PostList extends React.Component<any, any>{
         const {posts} = this.state
 
         return (
-            posts.map((post) => {
+            posts.map((post: PostReceivedInterface) => {
                 return this.renderPost(post)
             })
         )

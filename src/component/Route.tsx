@@ -5,24 +5,24 @@ import UserList from "./UserList";
 import PostList from "./PostList";
 import Login from "./Login";
 import TagList from "./TagList";
-import UserAdd from "./UserAdd.tsx";
+import UserAdd from "./UserAdd";
 import NavBar from "./Bootstrap";
-import {PostAdd} from "./PostAdd.tsx";
-import {isUserAuthenticated} from "./UserUtils.ts";
+import {PostAdd} from "./PostAdd";
+import {isUserAuthenticated} from "./UserUtils";
 import {PostView} from "./front/PostView";
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({children, exact, path}: {children: any, exact?: any, path: any}) {
     return (
         <Route
-            {...rest}
-            render={({ location }) =>
+            exact={exact} path={path}
+            render={({location}) =>
                 isUserAuthenticated() ? (
                     children
                 ) : (
                     <Redirect
                         to={{
                             pathname: "/login",
-                            state: { from: location }
+                            state: {from: location}
                         }}
                     />
                 )
@@ -32,35 +32,35 @@ function PrivateRoute({ children, ...rest }) {
 }
 
 
-export default function AppRouter() {
+export function AppRouter() {
     return (
         <Router>
             <div>
-                <NavBar />
-                <hr />
+                <NavBar/>
+                <hr/>
                 <Switch>
                     <Route exact path="/">
-                        <Home />
+                        <Home/>
                     </Route>
                     <Route exact path="/users/add">
-                        <UserAdd />
+                        <UserAdd/>
                     </Route>
                     <PrivateRoute exact path="/posts/add">
-                        <PostAdd />
+                        <PostAdd/>
                     </PrivateRoute>
-                    <Route exact path="/posts/:postId" component={PostView} />
+                    <Route exact path="/posts/:postId" component={PostView}/>
                     <PrivateRoute path="/users">
-                        <UserList />
+                        <UserList/>
                     </PrivateRoute>
 
                     <PrivateRoute path="/posts">
-                        <PostList />
+                        <PostList/>
                     </PrivateRoute>
                     <PrivateRoute path="/tags">
-                        <TagList />
+                        <TagList/>
                     </PrivateRoute>
                     <Route path="/login">
-                        <Login />
+                        <Login/>
                     </Route>
                 </Switch>
             </div>

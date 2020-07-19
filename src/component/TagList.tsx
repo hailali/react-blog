@@ -1,7 +1,12 @@
 import React from "react";
-import TagClient from "../client/TagClient";
+import TagClient, {TagReceivedInterface} from "../client/TagClient";
 
-export default class TagList extends React.Component {
+interface TagListStateInterface {
+    tags: TagReceivedInterface[],
+    loaded: boolean
+}
+
+export default class TagList extends React.Component<any, TagListStateInterface> {
     constructor(props) {
         super(props);
 
@@ -12,7 +17,7 @@ export default class TagList extends React.Component {
     }
 
     componentDidMount() {
-        TagClient.findAll().then(tags => {
+        TagClient.findAll().then((tags) => {
             this.setState({
                 tags: tags,
                 loaded: true
