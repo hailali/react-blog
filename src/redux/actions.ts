@@ -5,6 +5,10 @@ export enum ACTIONS {
     USER_LOGOUT = 'user_logout'
 }
 
+export interface ActionInterface {
+    type: string
+}
+
 export const USER_LOGIN_ACTION = {
     type: ACTIONS.USER_LOGIN
 }

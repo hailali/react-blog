@@ -7,10 +7,16 @@ interface StateInterface {
 }
 
 export default class UserAdd extends React.Component<any, StateInterface> {
-    ref_form: HTMLFormElement;
+    ref_form: HTMLFormElement | null;
 
     state: StateInterface = {
         userCreatedSuccessfully: false
+    }
+
+    constructor() {
+        super({});
+
+        this.ref_form = null;
     }
 
     private handleSubmit(e: React.FormEvent<HTMLFormElement>) {

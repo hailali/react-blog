@@ -26,7 +26,7 @@ export default class PostList extends React.Component<any, PostListStateInterfac
         });
     }
 
-    handleDelete(e: React.MouseEvent<HTMLAnchorElement>, postId: number) {
+    handleDelete(e: React.MouseEvent<HTMLButtonElement>, postId: number) {
         e.preventDefault()
 
         PostClient.deletePost(postId).then((isPostDeleted) => {
@@ -78,7 +78,7 @@ export default class PostList extends React.Component<any, PostListStateInterfac
                                 <td>{post.body}</td>
                                 <td>{post.active ? 'Yes' : 'No'}</td>
                                 <td>
-                                    <a href="" onClick={(e) => this.handleDelete(e, post.id)}><TrashIcon /></a>
+                                    <button onClick={(e) => this.handleDelete(e, post.id)}><TrashIcon /></button>
                                 </td>
                             </tr>
                         )

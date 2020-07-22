@@ -124,10 +124,10 @@ let NavBar = function ({isUserAuthenticated, onLogout}: {isUserAuthenticated: bo
                                 <PersonCircleIcon/>
                             </span>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userdetails">
-                                <a className="dropdown-item" href="#" onClick={() => {
+                                <button className="dropdown-item" onClick={() => {
                                     userLogOut();
                                     onLogout();
-                                }}>Logout </a>
+                                }}>Logout </button>
                             </div>
                         </div>
                         : ''}

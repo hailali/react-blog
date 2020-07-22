@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import './clean-blog.css';
-import  {AppRouter} from "./component/Route"
 import {store} from "./redux/store";
 import {Provider} from "react-redux";
+import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <AppRouter/>
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

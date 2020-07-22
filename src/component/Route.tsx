@@ -52,7 +52,6 @@ export function AppRouter() {
                     <PrivateRoute path="/users">
                         <UserList/>
                     </PrivateRoute>
-
                     <PrivateRoute path="/posts">
                         <PostList/>
                     </PrivateRoute>

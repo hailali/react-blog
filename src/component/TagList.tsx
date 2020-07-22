@@ -7,8 +7,8 @@ interface TagListStateInterface {
 }
 
 export default class TagList extends React.Component<any, TagListStateInterface> {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super({});
 
         this.state = {
             tags: [],
